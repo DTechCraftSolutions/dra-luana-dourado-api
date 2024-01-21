@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Professional {
+  id            String      @id @default(uuid())
+  name          String
+  phone         String
+  email         String      @unique
+  password_hash String
+  dentist       Boolean
+  Schedule      Schedule[]
+  Procedure     Procedure[]
+
+  @@map("professionals")
+}
+
+model Patient {
+  id            String @id @default(uuid())
+  name          String
+  phone         String
+  email         String @unique
+  password_hash String
+  status        String
+
+  @@map("patients")
+}
+
+model Schedule {
+  id             String       @id @default(uuid())
+  date           DateTime
+  procedures     Procedure    @relation(fields: [procedureId], references: [id])
+  professionals  Professional @relation(fields: [professionalId], references: [id])
+  procedureId    String
+  professionalId String
+}
+
+model Procedure {
+  id             String       @id @default(uuid())
+  type           String
+  duration       String
+  Schedule       Schedule[]
+  professionals  Professional @relation(fields: [professionalId], references: [id])
+  professionalId String
+
+  @@map("schedules")
+}
