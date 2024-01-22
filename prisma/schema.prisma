@@ -10,6 +10,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum RoleType {
+  PLANO
+  PARTICULAR
+}
+
+enum RoleStatus {
+  CANCELADO
+  ATENDIDO
+  PENDENTE
+}
+
+enum RoleTypeProcedure {
+  COMUM
+  RECORRENTE
+}
+
 model Professional {
   id            String      @id @default(uuid())
   name          String
@@ -24,12 +40,13 @@ model Professional {
 }
 
 model Patient {
-  id            String @id @default(uuid())
+  id            String     @id @default(uuid())
   name          String
   phone         String
-  email         String @unique
+  email         String     @unique
   password_hash String
   status        String
+  Schedule      Schedule[]
 
   @@map("patients")
 }
@@ -39,16 +56,21 @@ model Schedule {
   date           DateTime
   procedures     Procedure    @relation(fields: [procedureId], references: [id])
   professionals  Professional @relation(fields: [professionalId], references: [id])
+  patients       Patient      @relation(fields: [patientId], references: [id])
+  status         RoleStatus
+  type           RoleType
   procedureId    String
   professionalId String
+  patientId      String
 }
 
 model Procedure {
-  id             String       @id @default(uuid())
-  type           String
+  id             String            @id @default(uuid())
+  name           String
+  type           RoleTypeProcedure
   duration       String
   Schedule       Schedule[]
-  professionals  Professional @relation(fields: [professionalId], references: [id])
+  professionals  Professional      @relation(fields: [professionalId], references: [id])
   professionalId String
 
   @@map("schedules")
