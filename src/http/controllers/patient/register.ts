@@ -1,11 +1,9 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z, ZodError } from "zod";
-import { PrismaProfessionalsRepository } from "../../../repositories/prisma/professionals-prisma-repository";
-import { RegisterProfessionalsUseCase } from "../../../use-case/register-professionals";
 import { PrismaPatientsRepository } from "../../../repositories/prisma/patient-prisma-repository";
 import { RegisterPatientUseCase } from "../../../use-case/register-patient";
 
-const registerProfessionalsBodySchema = z.object({
+const registerPatientBodySchema = z.object({
   name: z.string(),
   phone: z.string(),
   email: z.string().email(),
@@ -13,7 +11,7 @@ const registerProfessionalsBodySchema = z.object({
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { name, phone, email } = registerProfessionalsBodySchema.parse(
+    const { name, phone, email } = registerPatientBodySchema.parse(
       request.body
     );
 

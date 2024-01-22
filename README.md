@@ -6,8 +6,8 @@ dr-luana-api
 
 paciente:
 
-- [] Deve ser possivel cadastrar um paciente
-- [] Deve ser possivel editar os dados de um paciente
+- [x] Deve ser possivel cadastrar um paciente
+- [x] Deve ser possivel editar os dados de um paciente
 
 Profissionais:
 
