@@ -24,8 +24,8 @@ Agendamentos:
 
 Procedimento:
 
-- [] Deve ser possivel cadastrar um procedimento
-- [] Deve ser possivel editar um procedimento do tipo recorrente
+- [x] Deve ser possivel cadastrar um procedimento
+- [x] Deve ser possivel editar um procedimento do tipo recorrente
 
 ## RNs (Regras de negócio)
 
