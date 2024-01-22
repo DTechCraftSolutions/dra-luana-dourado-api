@@ -40,13 +40,11 @@ model Professional {
 }
 
 model Patient {
-  id            String     @id @default(uuid())
-  name          String
-  phone         String
-  email         String     @unique
-  password_hash String
-  status        String
-  Schedule      Schedule[]
+  id       String     @id @default(uuid())
+  name     String
+  phone    String
+  email    String     @unique
+  Schedule Schedule[]
 
   @@map("patients")
 }
