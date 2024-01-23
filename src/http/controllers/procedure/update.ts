@@ -2,29 +2,33 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z, ZodError } from "zod";
 import { PrismaPatientsRepository } from "../../../repositories/prisma/patient-prisma-repository";
 import { UpdatePatientUseCase } from "../../../use-case/update-patient";
+import { PrismaProceduresRepository } from "../../../repositories/prisma/procedure-prisma-repository";
+import { UpdateProcedureUseCase } from "../../../use-case/update-procedure";
 
-const updatePatientBodySchema = z.object({
+const updateProcedureBodySchema = z.object({
   id: z.string(),
   name: z.string().optional(),
-  phone: z.string().optional(),
-  email: z.string().email().optional(),
+  duration: z.string().optional(),
+  type: z.enum(["COMUM", "RECORRENTE"]).optional(),
 });
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { id, name, phone, email } = updatePatientBodySchema.parse(
+    const { id, name, duration, type } = updateProcedureBodySchema.parse(
       request.body
     );
 
-    const patientsRepository = new PrismaPatientsRepository();
+    const procedureRepository = new PrismaProceduresRepository();
 
-    const updatePatientUseCase = new UpdatePatientUseCase(patientsRepository);
+    const updateProcedureUseCase = new UpdateProcedureUseCase(
+      procedureRepository
+    );
 
-    await updatePatientUseCase.execute({
+    await updateProcedureUseCase.execute({
       id,
       name,
-      phone,
-      email,
+      duration,
+      type,
     });
 
     return reply.status(200).send();
