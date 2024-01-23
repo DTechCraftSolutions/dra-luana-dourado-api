@@ -32,4 +32,20 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
       },
     });
   }
+
+  async findByDate(date: Date) {
+    return prisma.schedule.findFirst({
+      where: {
+        date,
+      },
+    });
+  }
+
+  async findByType(type: "PLANO" | "PARTICULAR") {
+    return prisma.schedule.findMany({
+      where: {
+        type,
+      },
+    });
+  }
 }

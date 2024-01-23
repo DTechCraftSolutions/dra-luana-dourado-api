@@ -20,7 +20,7 @@ Agendamentos:
 - [x] Deve ser possivel cadastrar um agendamento
 - [] Deve ser possivel ver agendamentos por data e convenio
 - [x] Deve ser possivel editar os dados do agendamento
-- [] Deve ser possivel cancelar um agendamento
+- [x] Deve ser possivel cancelar um agendamento
 
 Procedimento:
 
