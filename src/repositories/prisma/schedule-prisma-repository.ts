@@ -1,0 +1,35 @@
+import { prisma } from "../../lib/prisma";
+import { Prisma, Schedule } from "@prisma/client";
+
+import { SchedulesRepository } from "../schedule-repository";
+
+export class PrismaSchedulesRepository implements SchedulesRepository {
+  async findById(id: string) {
+    return prisma.schedule.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+
+  async create(data: Prisma.ScheduleCreateInput) {
+    return prisma.schedule.create({
+      data,
+    });
+  }
+
+  async update(schedule: Schedule) {
+    const { date, id, status, type } = schedule;
+
+    return prisma.schedule.update({
+      where: {
+        id,
+      },
+      data: {
+        date,
+        status,
+        type,
+      },
+    });
+  }
+}
