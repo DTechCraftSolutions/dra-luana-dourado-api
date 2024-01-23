@@ -18,7 +18,7 @@ Profissionais:
 Agendamentos:
 
 - [x] Deve ser possivel cadastrar um agendamento
-- [] Deve ser possivel ver agendamentos por data e convenio
+- [x] Deve ser possivel ver agendamentos por data e convenio
 - [x] Deve ser possivel editar os dados do agendamento
 - [x] Deve ser possivel cancelar um agendamento
 
@@ -35,4 +35,4 @@ Profissionais:
 
 Agendamentos:
 
-- [] Não pode editar a "data" do agendamento
+- [x] Não pode editar a "data" do agendamento
