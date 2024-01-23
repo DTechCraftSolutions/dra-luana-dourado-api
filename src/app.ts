@@ -6,6 +6,7 @@ import { env } from "./env";
 import fastifyCookie from "@fastify/cookie";
 import { patientRoutes } from "./http/controllers/patient/routes";
 import { procedureRoutes } from "./http/controllers/procedure/routes";
+import { scheduleRoutes } from "./http/controllers/schedule/routes";
 
 export const app = fastify();
 
@@ -28,3 +29,4 @@ app.register(fastifyCookie);
 app.register(professionalsRoutes);
 app.register(patientRoutes);
 app.register(procedureRoutes);
+app.register(scheduleRoutes);
