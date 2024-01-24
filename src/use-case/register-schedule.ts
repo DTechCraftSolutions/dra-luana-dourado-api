@@ -8,6 +8,7 @@ interface RegisterScheduleRequest {
   procedureId: string;
   professionalId: string;
   patientId: string;
+  availableTimeId: string;
 }
 
 interface RegisterScheduleResponse {
@@ -32,6 +33,7 @@ export class RegisterScheduleUseCase {
       procedures: { connect: { id: procedureId } },
       professionals: { connect: { id: professionalId } },
       patients: { connect: { id: patientId } },
+      available_times: { connect: { id: patientId } },
     });
 
     return {

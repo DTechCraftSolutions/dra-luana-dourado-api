@@ -10,12 +10,20 @@ const registerScheduleBodySchema = z.object({
   professionalId: z.string(),
   status: z.enum(["CANCELADO", "ATENDIDO", "PENDENTE"]),
   type: z.enum(["PLANO", "PARTICULAR"]),
+  availableTimeId: z.string(),
 });
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { date, patientId, procedureId, professionalId, status, type } =
-      registerScheduleBodySchema.parse(request.body);
+    const {
+      date,
+      patientId,
+      procedureId,
+      professionalId,
+      status,
+      type,
+      availableTimeId,
+    } = registerScheduleBodySchema.parse(request.body);
 
     const schedulesRepository = new PrismaSchedulesRepository();
 
@@ -30,6 +38,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       professionalId,
       status,
       type,
+      availableTimeId,
     });
 
     return reply.status(201).send();

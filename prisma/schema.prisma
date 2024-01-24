@@ -27,14 +27,15 @@ enum RoleTypeProcedure {
 }
 
 model Professional {
-  id            String      @id @default(uuid())
+  id            String          @id @default(uuid())
   name          String
   phone         String
-  email         String      @unique
+  email         String          @unique
   password_hash String
   dentist       Boolean
   Schedule      Schedule[]
   Procedure     Procedure[]
+  AvailableTime AvailableTime[]
 
   @@map("professionals")
 }
@@ -50,16 +51,29 @@ model Patient {
 }
 
 model Schedule {
+  id              String        @id @default(uuid())
+  date            DateTime
+  procedures      Procedure     @relation(fields: [procedureId], references: [id])
+  professionals   Professional  @relation(fields: [professionalId], references: [id])
+  patients        Patient       @relation(fields: [patientId], references: [id])
+  available_times AvailableTime @relation(fields: [availableTimeId], references: [id])
+  status          RoleStatus
+  type            RoleType
+  procedureId     String
+  professionalId  String
+  patientId       String
+  availableTimeId String
+}
+
+model AvailableTime {
   id             String       @id @default(uuid())
-  date           DateTime
-  procedures     Procedure    @relation(fields: [procedureId], references: [id])
+  label          String
+  day_of_week    String
+  Schedule       Schedule[]
   professionals  Professional @relation(fields: [professionalId], references: [id])
-  patients       Patient      @relation(fields: [patientId], references: [id])
-  status         RoleStatus
-  type           RoleType
-  procedureId    String
   professionalId String
-  patientId      String
+
+  @@map("available_times")
 }
 
 model Procedure {
