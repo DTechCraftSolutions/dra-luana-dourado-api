@@ -21,11 +21,26 @@ Agendamentos:
 - [x] Deve ser possivel ver agendamentos por data e convenio
 - [x] Deve ser possivel editar os dados do agendamento
 - [x] Deve ser possivel cancelar um agendamento
+- [] Deve ser possivel ver detalhes de um agendamento (id=[paciente])
+- [] Dever ser possivel editar o status de um agendamento (tipos=[em espera, em atendimento, finalizado, faltou, cancelado])
+- [] Dever ser possivel filtrar agendamentos do dia ou semana de um profissional 
+
 
 Procedimento:
 
 - [x] Deve ser possivel cadastrar um procedimento
 - [x] Deve ser possivel editar um procedimento do tipo recorrente
+
+Tratamentos: -sabado
+
+-[] Deve ser possivel criar um tratamento
+-[] Deve ser possivel editar um tratamento
+-[] Deve ser possivel alterar o status de um tratamento
+-[] Deve ser possivel jogar imprimir um tratamento
+
+Orçamento:
+-[] Deve ser possivel registrar um orçamento
+-[] Deve ser possivel editar um orçamento
 
 ## RNs (Regras de negócio)
 
@@ -36,3 +51,7 @@ Profissionais:
 Agendamentos:
 
 - [x] Não pode editar a "data" do agendamento
+- [] Agendamentos cancelados não podem ser perdidos
+
+Tratamento:
+-[] Ele fica veinculado a um orçamento
