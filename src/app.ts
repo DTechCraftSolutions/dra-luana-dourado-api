@@ -8,6 +8,7 @@ import { patientRoutes } from "./http/controllers/patient/routes";
 import { procedureRoutes } from "./http/controllers/procedure/routes";
 import { scheduleRoutes } from "./http/controllers/schedule/routes";
 import { availableTimesRoutes } from "./http/controllers/available-times/routes";
+import { budgetRoutes } from "./http/controllers/budget/routes";
 
 export const app = fastify();
 
@@ -32,3 +33,4 @@ app.register(patientRoutes);
 app.register(procedureRoutes);
 app.register(scheduleRoutes);
 app.register(availableTimesRoutes);
+app.register(budgetRoutes);
