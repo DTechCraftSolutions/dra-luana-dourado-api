@@ -39,8 +39,7 @@ Tratamentos: -sabado
 
 Orçamento:
 
--[x] Deve ser possivel registrar um orçamento
--[] Deve ser possivel editar um orçamento
+-[x] Deve ser possivel registrar um orçamento -[x] Deve ser possivel editar um orçamento
 
 ## RNs (Regras de negócio)
 
