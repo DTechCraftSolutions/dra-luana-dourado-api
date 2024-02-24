@@ -7,4 +7,5 @@ export interface SchedulesRepository {
   findByDate(date: Date): Promise<Schedule | null>;
   findByType(type: "PLANO" | "PARTICULAR"): Promise<Schedule[]>;
   findByPacientId(patientId: string): Promise<Schedule[]>;
+  findByProfessionalId(professionalId: string): Promise<Schedule[]>;
 }

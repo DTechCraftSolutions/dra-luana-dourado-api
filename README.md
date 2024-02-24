@@ -23,7 +23,7 @@ Agendamentos:
 - [x] Deve ser possivel cancelar um agendamento
 - [x] Deve ser possivel ver detalhes de um agendamento (id=[paciente])
 - [] Dever ser possivel editar o status de um agendamento (tipos=[em espera, em atendimento, finalizado, faltou, cancelado])
-- [] Dever ser possivel filtrar agendamentos do dia ou semana de um profissional
+- [x] Dever ser possivel filtrar agendamentos do dia ou semana de um profissional
 
 Procedimento:
 
