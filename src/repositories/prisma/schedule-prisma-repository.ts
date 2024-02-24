@@ -4,6 +4,15 @@ import { Prisma, Schedule } from "@prisma/client";
 import { SchedulesRepository } from "../schedule-repository";
 
 export class PrismaSchedulesRepository implements SchedulesRepository {
+  async findByPacientId(patientId: string) {
+    return prisma.schedule.findMany({
+      where: {
+        patients: {
+          id: patientId,
+        },
+      },
+    });
+  }
   async findById(id: string) {
     return prisma.schedule.findUnique({
       where: {

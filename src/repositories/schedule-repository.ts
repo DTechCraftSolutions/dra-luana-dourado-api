@@ -6,4 +6,5 @@ export interface SchedulesRepository {
   update(schedule: Schedule): Promise<Schedule>;
   findByDate(date: Date): Promise<Schedule | null>;
   findByType(type: "PLANO" | "PARTICULAR"): Promise<Schedule[]>;
+  findByPacientId(patientId: string): Promise<Schedule[]>;
 }

@@ -21,10 +21,9 @@ Agendamentos:
 - [x] Deve ser possivel ver agendamentos por data e convenio
 - [x] Deve ser possivel editar os dados do agendamento
 - [x] Deve ser possivel cancelar um agendamento
-- [] Deve ser possivel ver detalhes de um agendamento (id=[paciente])
+- [x] Deve ser possivel ver detalhes de um agendamento (id=[paciente])
 - [] Dever ser possivel editar o status de um agendamento (tipos=[em espera, em atendimento, finalizado, faltou, cancelado])
-- [] Dever ser possivel filtrar agendamentos do dia ou semana de um profissional 
-
+- [] Dever ser possivel filtrar agendamentos do dia ou semana de um profissional
 
 Procedimento:
 
