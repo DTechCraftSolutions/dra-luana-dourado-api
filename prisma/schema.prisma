@@ -87,3 +87,10 @@ model Procedure {
 
   @@map("schedules")
 }
+
+model Budget {
+  id    String @id @default(uuid())
+  price Int
+
+  @@map("budgets")
+}
