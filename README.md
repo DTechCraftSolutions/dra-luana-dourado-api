@@ -7,7 +7,7 @@ dr-luana-api
 paciente:
 
 - [x] Deve ser possivel cadastrar um paciente
-      refactor model: {
+      -[] refactor model: {
       full name: string
       cpf: string
       Rg: string
