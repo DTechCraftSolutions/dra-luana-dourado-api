@@ -5,16 +5,45 @@ import { UpdatePatientUseCase } from "../../../use-case/update-patient";
 
 const updatePatientBodySchema = z.object({
   id: z.string(),
-  name: z.string().optional(),
-  phone: z.string().optional(),
-  email: z.string().email().optional(),
+  full_name: z.string().optional(),
+  cpf: z.string().optional(),
+  rg: z.string().optional(),
+  birth_date: z.string().optional(),
+  telephone: z.string().optional(),
+  comments: z.string().optional(),
+  sex: z.string().optional(),
+  role: z.string().optional(),
+  card_number: z.string().optional(),
+  cep: z.string().optional(),
+  road: z.string().optional(),
+  neighborhood: z.string().optional(),
+  city: z.string().optional(),
+  state: z.string().optional(),
+  number: z.string().optional(),
+  complement: z.string().optional(),
 });
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { id, name, phone, email } = updatePatientBodySchema.parse(
-      request.body
-    );
+    const {
+      id,
+      full_name,
+      cpf,
+      rg,
+      birth_date,
+      telephone,
+      comments,
+      sex,
+      role,
+      card_number,
+      cep,
+      road,
+      neighborhood,
+      city,
+      state,
+      number,
+      complement,
+    } = updatePatientBodySchema.parse(request.body);
 
     const patientsRepository = new PrismaPatientsRepository();
 
@@ -22,9 +51,22 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
 
     await updatePatientUseCase.execute({
       id,
-      name,
-      phone,
-      email,
+      full_name,
+      cpf,
+      rg,
+      birth_date,
+      telephone,
+      comments,
+      sex,
+      role,
+      card_number,
+      cep,
+      road,
+      neighborhood,
+      city,
+      state,
+      number,
+      complement,
     });
 
     return reply.status(200).send();

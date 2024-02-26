@@ -29,6 +29,7 @@ complemento: string
 }
 
 - [x] Deve ser possivel editar os dados de um paciente
+- [x] Deve ser possivel ver os pacientes cadastrados
 
 Profissionais:
 

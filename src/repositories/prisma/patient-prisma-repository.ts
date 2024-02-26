@@ -5,19 +5,15 @@ import { Patient } from "@prisma/client";
 import { PatientsRepository } from "../patient-repository";
 
 export class PrismaPatientsRepository implements PatientsRepository {
+  async findAll() {
+    return prisma.patient.findMany();
+  }
   async create(data: Prisma.PatientCreateInput) {
     return prisma.patient.create({
       data,
     });
   }
 
-  async findByEmail(email: string) {
-    return prisma.patient.findUnique({
-      where: {
-        email,
-      },
-    });
-  }
   async findById(id: string) {
     return prisma.patient.findUnique({
       where: {
@@ -27,15 +23,46 @@ export class PrismaPatientsRepository implements PatientsRepository {
   }
 
   async update(Patient: Patient) {
-    const { id, name, phone, email } = Patient;
+    const {
+      id,
+      birth_date,
+      cep,
+      city,
+      complement,
+      neighborhood,
+      number,
+      road,
+      role,
+      state,
+      telephone,
+      card_number,
+      comments,
+      cpf,
+      full_name,
+      rg,
+      sex,
+    } = Patient;
     return prisma.patient.update({
       where: {
         id,
       },
       data: {
-        name,
-        phone,
-        email,
+        birth_date,
+        cep,
+        city,
+        complement,
+        neighborhood,
+        number,
+        road,
+        role,
+        state,
+        telephone,
+        card_number,
+        comments,
+        cpf,
+        full_name,
+        rg,
+        sex,
       },
     });
   }
