@@ -7,23 +7,24 @@ dr-luana-api
 paciente:
 
 - [x] Deve ser possivel cadastrar um paciente
-      -[] refactor model: {
-      full name: string
-      cpf: string
-      Rg: string
-      data de nacimento: sgring
-      telefone: string
-      observações: string
-      sexo: string
-      plano: string
-      numero da carteirinha: int
-      cep: string
-      rua: string
-      bairro: string
-      cidade: string
-      estado: string
-      numero: int
-      complemento: string
+
+-[x] refactor model: {
+full name: string
+cpf: string
+Rg: string
+data de nacimento: sgring
+telefone: string
+observações: string
+sexo: string
+plano: string
+numero da carteirinha: int
+cep: string
+rua: string
+bairro: string
+cidade: string
+estado: string
+numero: int
+complemento: string
 
 }
 
@@ -59,7 +60,9 @@ Tratamentos: -sabado
 
 Orçamento:
 
--[x] Deve ser possivel registrar um orçamento -[x] Deve ser possivel editar um orçamento
+-[x] Deve ser possivel registrar um orçamento
+
+-[x] Deve ser possivel editar um orçamento
 
 ## RNs (Regras de negócio)
 
