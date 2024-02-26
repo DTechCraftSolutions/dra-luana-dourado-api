@@ -50,13 +50,13 @@ model Patient {
   comments     String
   sex          String
   role         String
-  card_number  Int
+  card_number  String
   cep          String
   road         String
   neighborhood String
   city         String
   state        String
-  number       Int
+  number       String
   complement   String
   Schedule     Schedule[]
 

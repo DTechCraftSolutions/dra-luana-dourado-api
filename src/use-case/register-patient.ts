@@ -2,9 +2,22 @@ import { Patient } from "@prisma/client";
 import { PatientsRepository } from "../repositories/patient-repository";
 
 export interface RegisterPatientRequest {
-  name: string;
-  phone: string;
-  email: string;
+  full_name: string;
+  cpf: string;
+  rg: string;
+  birth_date: string;
+  telephone: string;
+  comments: string;
+  sex: string;
+  role: string;
+  card_number: string;
+  cep: string;
+  road: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  number: string;
+  complement: string;
 }
 
 export interface RegisterPatientResponse {
@@ -13,22 +26,40 @@ export interface RegisterPatientResponse {
 export class RegisterPatientUseCase {
   constructor(private patientsRepository: PatientsRepository) {}
   async execute({
-    name,
-    phone,
-    email,
+    birth_date,
+    cep,
+    city,
+    complement,
+    neighborhood,
+    number,
+    road,
+    role,
+    state,
+    telephone,
+    card_number,
+    comments,
+    cpf,
+    full_name,
+    rg,
+    sex,
   }: RegisterPatientRequest): Promise<RegisterPatientResponse> {
-    const patientWithSameEmail = await this.patientsRepository.findByEmail(
-      email
-    );
-
-    if (patientWithSameEmail) {
-      throw new Error("Email already in use");
-    }
-
     const patient = await this.patientsRepository.create({
-      name,
-      phone,
-      email,
+      birth_date,
+      cep,
+      city,
+      complement,
+      neighborhood,
+      number,
+      road,
+      role,
+      state,
+      telephone,
+      card_number,
+      comments,
+      cpf,
+      full_name,
+      rg,
+      sex,
     });
 
     return { patient };
