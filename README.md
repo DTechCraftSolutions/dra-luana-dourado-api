@@ -77,3 +77,6 @@ Agendamentos:
 
 Tratamento:
 -[] Ele fica veinculado a um orçamento
+
+Paciente:
+-[] Deve verificar se o cpf é unico, assim como RG
