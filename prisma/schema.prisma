@@ -41,11 +41,24 @@ model Professional {
 }
 
 model Patient {
-  id       String     @id @default(uuid())
-  name     String
-  phone    String
-  email    String     @unique
-  Schedule Schedule[]
+  id           String     @id @default(uuid())
+  full_name    String
+  cpf          String
+  rg           String
+  birth_date   String
+  telephone    String
+  comments     String
+  sex          String
+  role         String
+  card_number  Int
+  cep          String
+  road         String
+  neighborhood String
+  city         String
+  state        String
+  number       Int
+  complement   String
+  Schedule     Schedule[]
 
   @@map("patients")
 }
