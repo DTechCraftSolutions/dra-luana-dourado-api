@@ -20,6 +20,12 @@ const registerPatientBodySchema = z.object({
   full_name: z.string(),
   rg: z.string(),
   sex: z.string(),
+  responsible_name: z.string().optional(),
+  responsible_cpf: z.string().optional(),
+  responsible_rg: z.string().optional(),
+  birth_date_responsible: z.string().optional(),
+  telphone_responsible: z.string().optional(),
+  comments_responsible: z.string().optional(),
 });
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
@@ -41,6 +47,12 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       full_name,
       rg,
       sex,
+      responsible_name,
+      responsible_cpf,
+      responsible_rg,
+      birth_date_responsible,
+      telphone_responsible,
+      comments_responsible,
     } = registerPatientBodySchema.parse(request.body);
 
     const patientsRepository = new PrismaPatientsRepository();
@@ -66,6 +78,12 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       full_name,
       rg,
       sex,
+      responsible_name,
+      responsible_cpf,
+      responsible_rg,
+      birth_date_responsible,
+      telphone_responsible,
+      comments_responsible,
     });
 
     return reply.status(201).send();
