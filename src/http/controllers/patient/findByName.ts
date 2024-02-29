@@ -8,7 +8,7 @@ const findByNameBodySchema = z.object({
   name: z.string(),
 });
 
-export async function findAll(request: FastifyRequest, reply: FastifyReply) {
+export async function findByName(request: FastifyRequest, reply: FastifyReply) {
   try {
     const patientsRepository = new PrismaPatientsRepository();
 
