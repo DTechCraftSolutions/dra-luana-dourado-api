@@ -5,7 +5,7 @@ import { FetchPatientsUseCase } from "../../../use-case/fetch-patients";
 import { FetchByNamePatientsUseCase } from "../../../use-case/fetch-by-name-patients";
 
 const findByNameBodySchema = z.object({
-  name: z.string(),
+  full_name: z.string(),
 });
 
 export async function findByName(request: FastifyRequest, reply: FastifyReply) {
@@ -16,10 +16,10 @@ export async function findByName(request: FastifyRequest, reply: FastifyReply) {
       patientsRepository
     );
 
-    const { name } = findByNameBodySchema.parse(request.body);
+    const { full_name } = findByNameBodySchema.parse(request.body);
 
     const patients = await fetchAllPatientsUseCase.execute({
-      name,
+      full_name,
     });
 
     return reply.status(200).send(patients);

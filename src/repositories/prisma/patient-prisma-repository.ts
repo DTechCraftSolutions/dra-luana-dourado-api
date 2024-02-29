@@ -6,12 +6,15 @@ import { PatientsRepository } from "../patient-repository";
 
 export class PrismaPatientsRepository implements PatientsRepository {
   async findByName(name: string) {
-    return prisma.patient.findFirst({
+    return prisma.patient.findFirstOrThrow({
       where: {
-        full_name: name,
+        full_name: {
+          contains: name,
+        },
       },
     });
   }
+
   async findAll() {
     return prisma.patient.findMany();
   }

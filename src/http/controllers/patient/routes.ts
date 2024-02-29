@@ -7,5 +7,5 @@ export async function patientRoutes(app: FastifyInstance) {
   app.post("/register-patient", register);
   app.put("/update-patient", update);
   app.get("/find-all-patient", findAll);
-  app.get("/find-patient-by-name", findByName);
+  app.post("/find-patient-by-name", findByName);
 }
