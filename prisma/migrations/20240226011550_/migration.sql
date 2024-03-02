@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "patients" ALTER COLUMN "card_number" SET DATA TYPE TEXT,
-ALTER COLUMN "number" SET DATA TYPE TEXT;

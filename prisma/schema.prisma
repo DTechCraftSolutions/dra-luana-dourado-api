@@ -26,13 +26,18 @@ enum RoleTypeProcedure {
   RECORRENTE
 }
 
+enum OfficeType {
+  DENTIST
+  SECRETARY
+}
+
 model Professional {
   id            String          @id @default(uuid())
   name          String
-  phone         String
   email         String          @unique
   password_hash String
-  dentist       Boolean
+  office        OfficeType
+  CRO           String
   Schedule      Schedule[]
   Procedure     Procedure[]
   AvailableTime AvailableTime[]
