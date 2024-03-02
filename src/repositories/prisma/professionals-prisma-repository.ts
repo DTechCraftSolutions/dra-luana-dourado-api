@@ -4,6 +4,9 @@ import { Prisma } from "@prisma/client";
 import { ProfessionalsRepository } from "../professionals-repository";
 
 export class PrismaProfessionalsRepository implements ProfessionalsRepository {
+  async findAll() {
+    return prisma.professional.findMany();
+  }
   async findByEmail(email: string) {
     return prisma.professional.findUnique({
       where: {
