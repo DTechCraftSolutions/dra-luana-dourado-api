@@ -4,10 +4,10 @@ import { hash } from "bcrypt";
 
 interface RegisterProfessionalsRequest {
   name: string;
-  phone: string;
   email: string;
   password: string;
-  dentist: boolean;
+  office: "DENTIST" | "SECRETARY";
+  CRO?: string;
 }
 
 interface RegisterProfessionalsResponse {
@@ -18,10 +18,10 @@ export class RegisterProfessionalsUseCase {
   constructor(private professionalsRepository: ProfessionalsRepository) {}
   async execute({
     name,
-    phone,
     email,
+    CRO,
+    office,
     password,
-    dentist,
   }: RegisterProfessionalsRequest): Promise<RegisterProfessionalsResponse> {
     const professionalsWithSameEmail =
       await this.professionalsRepository.findByEmail(email);
@@ -34,10 +34,10 @@ export class RegisterProfessionalsUseCase {
 
     const professional = await this.professionalsRepository.create({
       name,
-      phone,
+      office,
       email,
       password_hash,
-      dentist,
+      CRO,
     });
 
     return { professionals: professional };

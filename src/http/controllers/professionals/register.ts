@@ -5,10 +5,10 @@ import { RegisterProfessionalsUseCase } from "../../../use-case/register-profess
 
 const registerProfessionalsBodySchema = z.object({
   name: z.string(),
-  phone: z.string(),
   email: z.string().email(),
   password: z.string(),
-  dentist: z.boolean().default(true),
+  CRO: z.string().optional(),
+  office: z.enum(["DENTIST", "SECRETARY"]),
 });
 
 export async function registerProfessionals(
@@ -16,7 +16,7 @@ export async function registerProfessionals(
   reply: FastifyReply
 ) {
   try {
-    const { name, phone, email, password, dentist } =
+    const { name, CRO, email, password, office } =
       registerProfessionalsBodySchema.parse(request.body);
 
     const professionalsRepository = new PrismaProfessionalsRepository();
@@ -27,10 +27,10 @@ export async function registerProfessionals(
 
     await registerProfessionalsUseCase.execute({
       name,
-      phone,
+      office,
       email,
       password,
-      dentist,
+      CRO,
     });
 
     return reply.status(201).send();

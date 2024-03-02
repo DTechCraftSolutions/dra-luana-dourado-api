@@ -37,7 +37,7 @@ model Professional {
   email         String          @unique
   password_hash String
   office        OfficeType
-  CRO           String
+  CRO           String?
   Schedule      Schedule[]
   Procedure     Procedure[]
   AvailableTime AvailableTime[]
