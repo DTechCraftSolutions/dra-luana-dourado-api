@@ -94,6 +94,8 @@ model AvailableTime {
   id             String       @id @default(uuid())
   label          String
   day_of_week    String
+  initial_time   String
+  end_time       String
   Schedule       Schedule[]
   professionals  Professional @relation(fields: [professionalId], references: [id])
   professionalId String

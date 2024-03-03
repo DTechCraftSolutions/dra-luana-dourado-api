@@ -52,6 +52,8 @@ export class RegisterAvailableTimesBarberUseCase {
 
         const createdAvailableTime = await this.availableTimesRepository.create(
           {
+            initial_time,
+            end_time,
             label: _label,
             day_of_week,
             professionals: { connect: { id: professionalId } },

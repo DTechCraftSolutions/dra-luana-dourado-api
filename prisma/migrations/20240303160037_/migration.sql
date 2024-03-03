@@ -17,7 +17,7 @@ CREATE TABLE "professionals" (
     "email" TEXT NOT NULL,
     "password_hash" TEXT NOT NULL,
     "office" "OfficeType" NOT NULL,
-    "CRO" TEXT NOT NULL,
+    "CRO" TEXT,
 
     CONSTRAINT "professionals_pkey" PRIMARY KEY ("id")
 );
@@ -70,6 +70,8 @@ CREATE TABLE "available_times" (
     "id" TEXT NOT NULL,
     "label" TEXT NOT NULL,
     "day_of_week" TEXT NOT NULL,
+    "initial_time" TEXT NOT NULL,
+    "end_time" TEXT NOT NULL,
     "professionalId" TEXT NOT NULL,
 
     CONSTRAINT "available_times_pkey" PRIMARY KEY ("id")
