@@ -7,12 +7,14 @@ const registerProcedureBodySchema = z.object({
   duration: z.string(),
   name: z.string(),
   professionalId: z.string(),
-  type: z.enum(["COMUM", "RECORRENTE"]),
+  color: z.string(),
+  recurrence: z.string(),
+  description: z.string(),
 });
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { name, duration, professionalId, type } =
+    const { name, duration, professionalId, color, recurrence, description } =
       registerProcedureBodySchema.parse(request.body);
 
     const procedureRepository = new PrismaProceduresRepository();
@@ -24,7 +26,9 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       duration,
       name,
       professionalId,
-      type,
+      recurrence,
+      color,
+      description,
     });
 
     return reply.status(201).send();

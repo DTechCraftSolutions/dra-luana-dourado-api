@@ -3,8 +3,10 @@ import { ProcedureRepository } from "../repositories/procedure-repository";
 
 interface RegisterProcedureRequest {
   name: string;
-  type: "COMUM" | "RECORRENTE";
+  recurrence: string;
   duration: string;
+  color: string;
+  description: string;
   professionalId: string;
 }
 
@@ -18,13 +20,17 @@ export class RegisterProcedureUseCase {
   async execute({
     professionalId,
     name,
-    type,
+    color,
+    description,
     duration,
+    recurrence,
   }: RegisterProcedureRequest): Promise<RegisterProcedureResponse> {
     const procedure = await this.proceduresRepository.create({
       name,
-      type,
+      color,
+      description,
       duration,
+      recurrence,
       professionals: { connect: { id: professionalId } },
     });
     return {

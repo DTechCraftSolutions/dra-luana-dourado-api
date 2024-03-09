@@ -21,11 +21,6 @@ enum RoleStatus {
   PENDENTE
 }
 
-enum RoleTypeProcedure {
-  COMUM
-  RECORRENTE
-}
-
 enum OfficeType {
   DENTIST
   SECRETARY
@@ -104,12 +99,14 @@ model AvailableTime {
 }
 
 model Procedure {
-  id             String            @id @default(uuid())
+  id             String       @id @default(uuid())
   name           String
-  type           RoleTypeProcedure
+  recurrence     String
   duration       String
+  color          String
+  description    String
   Schedule       Schedule[]
-  professionals  Professional      @relation(fields: [professionalId], references: [id])
+  professionals  Professional @relation(fields: [professionalId], references: [id])
   professionalId String
 
   @@map("schedules")
