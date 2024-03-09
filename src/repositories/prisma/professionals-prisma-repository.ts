@@ -4,6 +4,13 @@ import { Prisma } from "@prisma/client";
 import { ProfessionalsRepository } from "../professionals-repository";
 
 export class PrismaProfessionalsRepository implements ProfessionalsRepository {
+  async findByName(name: string) {
+    return prisma.professional.findFirstOrThrow({
+      where: {
+        name,
+      },
+    });
+  }
   async findAll() {
     return prisma.professional.findMany();
   }

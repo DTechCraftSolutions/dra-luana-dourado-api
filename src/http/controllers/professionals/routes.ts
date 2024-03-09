@@ -5,6 +5,7 @@ import { verifyJwt } from "../../middlewares/verify-jwt";
 import { refresh } from "./refresh";
 import { profile } from "./profile";
 import { findAll } from "./findAll";
+import { findNameById } from "./findNameById";
 
 export async function professionalsRoutes(app: FastifyInstance) {
   app.post("/register-professionals", registerProfessionals);
@@ -16,4 +17,6 @@ export async function professionalsRoutes(app: FastifyInstance) {
   app.get("/profile-professionals", { onRequest: [verifyJwt] }, profile);
 
   app.get("/find-all-professionals", findAll);
+
+  app.post("/find-by-name-professionals", findNameById);
 }
