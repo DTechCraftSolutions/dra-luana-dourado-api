@@ -8,6 +8,7 @@ interface RegisterProcedureRequest {
   color: string;
   description: string;
   professionalId: string;
+  price: number;
 }
 
 interface RegisterProcedureResponse {
@@ -24,6 +25,7 @@ export class RegisterProcedureUseCase {
     description,
     duration,
     recurrence,
+    price,
   }: RegisterProcedureRequest): Promise<RegisterProcedureResponse> {
     const procedure = await this.proceduresRepository.create({
       name,
@@ -31,6 +33,7 @@ export class RegisterProcedureUseCase {
       description,
       duration,
       recurrence,
+      price,
       professionals: { connect: { id: professionalId } },
     });
     return {

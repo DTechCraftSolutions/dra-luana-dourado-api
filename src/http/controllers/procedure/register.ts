@@ -10,12 +10,20 @@ const registerProcedureBodySchema = z.object({
   color: z.string(),
   recurrence: z.string(),
   description: z.string(),
+  price: z.number(),
 });
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { name, duration, professionalId, color, recurrence, description } =
-      registerProcedureBodySchema.parse(request.body);
+    const {
+      name,
+      duration,
+      professionalId,
+      color,
+      recurrence,
+      description,
+      price,
+    } = registerProcedureBodySchema.parse(request.body);
 
     const procedureRepository = new PrismaProceduresRepository();
     const registerProcedureUseCase = new RegisterProcedureUseCase(
@@ -29,6 +37,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       recurrence,
       color,
       description,
+      price,
     });
 
     return reply.status(201).send();

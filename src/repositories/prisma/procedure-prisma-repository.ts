@@ -5,6 +5,10 @@ import { Procedure } from "@prisma/client";
 import { ProcedureRepository } from "../procedure-repository";
 
 export class PrismaProceduresRepository implements ProcedureRepository {
+  async findAll() {
+    return prisma.procedure.findMany();
+  }
+
   async create(data: Prisma.ProcedureCreateInput) {
     return prisma.procedure.create({
       data,
@@ -12,7 +16,8 @@ export class PrismaProceduresRepository implements ProcedureRepository {
   }
 
   async update(procedure: Procedure) {
-    const { id, name, duration, type } = procedure;
+    const { id, name, duration, color, description, price, recurrence } =
+      procedure;
     return prisma.procedure.update({
       where: {
         id,
@@ -20,7 +25,10 @@ export class PrismaProceduresRepository implements ProcedureRepository {
       data: {
         name,
         duration,
-        type,
+        color,
+        description,
+        price,
+        recurrence,
       },
     });
   }
