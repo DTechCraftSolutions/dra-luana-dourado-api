@@ -10,14 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum RoleType {
-  PLANO
-  PARTICULAR
-}
-
 enum RoleStatus {
+  AGUARDANDO
+  EM_ATENDIMENTO
   CANCELADO
-  ATENDIDO
+  FINALIZADO
+  REAGENDADO
   PENDENTE
 }
 
@@ -78,7 +76,6 @@ model Schedule {
   patients        Patient       @relation(fields: [patientId], references: [id])
   available_times AvailableTime @relation(fields: [availableTimeId], references: [id])
   status          RoleStatus
-  type            RoleType
   procedureId     String
   professionalId  String
   patientId       String
