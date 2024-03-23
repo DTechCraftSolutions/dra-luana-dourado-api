@@ -4,7 +4,7 @@ import { PrismaSchedulesRepository } from "../../../repositories/prisma/schedule
 import { RegisterScheduleUseCase } from "../../../use-case/register-schedule";
 
 const registerScheduleBodySchema = z.object({
-  date: z.date(),
+  date: z.string(),
   patientId: z.string(),
   procedureId: z.string(),
   professionalId: z.string(),

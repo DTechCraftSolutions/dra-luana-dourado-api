@@ -2,7 +2,7 @@ import { Schedule } from "@prisma/client";
 import { SchedulesRepository } from "../repositories/schedule-repository";
 
 interface RegisterScheduleRequest {
-  date: Date;
+  date: string;
   status:
     | "AGUARDANDO"
     | "EM_ATENDIMENTO"
