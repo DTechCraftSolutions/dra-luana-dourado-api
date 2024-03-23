@@ -10,5 +10,5 @@ export async function scheduleRoutes(app: FastifyInstance) {
   app.put("/update-schedule", update);
   app.get("/find-schedule", fetch);
   app.get("/find-schedule-by-patient", fetchByPatient);
-  app.get("/find-schedule-by-professional", fetchByProfessional);
+  app.post("/find-schedule-by-professional", fetchByProfessional);
 }
