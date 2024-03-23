@@ -22,7 +22,7 @@ export async function findByDayWeek(
       day_of_week,
     });
 
-    return reply.status(200).send({ available_times });
+    return reply.status(200).send(available_times);
   } catch (error: any) {
     if (error instanceof ZodError) {
       return reply.status(400).send({ validationError: error.errors });
