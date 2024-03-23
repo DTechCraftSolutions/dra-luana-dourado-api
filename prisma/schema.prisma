@@ -70,7 +70,7 @@ model Patient {
 
 model Schedule {
   id              String        @id @default(uuid())
-  date            DateTime
+  date            String
   procedures      Procedure     @relation(fields: [procedureId], references: [id])
   professionals   Professional  @relation(fields: [professionalId], references: [id])
   patients        Patient       @relation(fields: [patientId], references: [id])

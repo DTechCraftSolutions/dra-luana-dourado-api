@@ -4,12 +4,18 @@ import { PrismaSchedulesRepository } from "../../../repositories/prisma/schedule
 import { RegisterScheduleUseCase } from "../../../use-case/register-schedule";
 
 const registerScheduleBodySchema = z.object({
-  date: z.date(),
+  date: z.string(),
   patientId: z.string(),
   procedureId: z.string(),
   professionalId: z.string(),
-  status: z.enum(["CANCELADO", "ATENDIDO", "PENDENTE"]),
-  type: z.enum(["PLANO", "PARTICULAR"]),
+  status: z.enum([
+    "AGUARDANDO",
+    "EM_ATENDIMENTO",
+    "CANCELADO",
+    "FINALIZADO",
+    "REAGENDADO",
+    "PENDENTE",
+  ]),
   availableTimeId: z.string(),
 });
 
@@ -21,7 +27,6 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       procedureId,
       professionalId,
       status,
-      type,
       availableTimeId,
     } = registerScheduleBodySchema.parse(request.body);
 
@@ -37,7 +42,6 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       procedureId,
       professionalId,
       status,
-      type,
       availableTimeId,
     });
 

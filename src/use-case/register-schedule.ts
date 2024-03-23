@@ -2,9 +2,15 @@ import { Schedule } from "@prisma/client";
 import { SchedulesRepository } from "../repositories/schedule-repository";
 
 interface RegisterScheduleRequest {
-  date: Date;
-  status: "CANCELADO" | "ATENDIDO" | "PENDENTE";
-  type: "PLANO" | "PARTICULAR";
+  date: string;
+  status:
+    | "AGUARDANDO"
+    | "EM_ATENDIMENTO"
+    | "CANCELADO"
+    | "FINALIZADO"
+    | "REAGENDADO"
+    | "PENDENTE";
+
   procedureId: string;
   professionalId: string;
   patientId: string;
@@ -21,7 +27,6 @@ export class RegisterScheduleUseCase {
   async execute({
     date,
     status,
-    type,
     procedureId,
     professionalId,
     patientId,
@@ -29,7 +34,6 @@ export class RegisterScheduleUseCase {
     const schedule = await this.schedulesRepository.create({
       date,
       status,
-      type,
       procedures: { connect: { id: procedureId } },
       professionals: { connect: { id: professionalId } },
       patients: { connect: { id: patientId } },
