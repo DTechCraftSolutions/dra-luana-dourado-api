@@ -7,6 +7,6 @@ import { findByDayWeek } from "./findByDayWeek";
 export async function availableTimesRoutes(app: FastifyInstance) {
   app.post("/register-available-times", register);
   app.get("/find-all-available-times", findAll);
-  app.get("/find-by-day-week", findByDayWeek);
+  app.post("/find-by-day-week", findByDayWeek);
   app.delete("/delete-available-times", remove);
 }
