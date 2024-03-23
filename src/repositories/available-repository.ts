@@ -9,4 +9,5 @@ export interface AvailableTimeRepository {
     initial_time: string,
     end_time: string
   ): Promise<void>;
+  findByDayOfWeek(day_of_week: string): Promise<AvailableTime[]>;
 }
