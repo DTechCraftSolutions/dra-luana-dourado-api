@@ -1,5 +1,6 @@
 import { Schedule } from "@prisma/client";
 import { SchedulesRepository } from "../repositories/schedule-repository";
+import { availableTimesRoutes } from "../http/controllers/available-times/routes";
 
 interface RegisterScheduleRequest {
   date: string;
@@ -30,6 +31,7 @@ export class RegisterScheduleUseCase {
     procedureId,
     professionalId,
     patientId,
+    availableTimeId,
   }: RegisterScheduleRequest): Promise<RegisterScheduleResponse> {
     const schedule = await this.schedulesRepository.create({
       date,
@@ -37,7 +39,7 @@ export class RegisterScheduleUseCase {
       procedures: { connect: { id: procedureId } },
       professionals: { connect: { id: professionalId } },
       patients: { connect: { id: patientId } },
-      available_times: { connect: { id: patientId } },
+      available_times: { connect: { id: availableTimeId } },
     });
 
     return {
