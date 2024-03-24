@@ -4,6 +4,9 @@ import { Prisma, Schedule } from "@prisma/client";
 import { SchedulesRepository } from "../schedule-repository";
 
 export class PrismaSchedulesRepository implements SchedulesRepository {
+  async findAll() {
+    return prisma.schedule.findMany();
+  }
   async findByProfessionalId(professionalId: string) {
     return prisma.schedule.findMany({
       where: {
@@ -37,7 +40,7 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
   }
 
   async update(schedule: Schedule) {
-    const { date, id, status, type } = schedule;
+    const { date, id, status } = schedule;
 
     return prisma.schedule.update({
       where: {
@@ -46,23 +49,6 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
       data: {
         date,
         status,
-        type,
-      },
-    });
-  }
-
-  async findByDate(date: Date) {
-    return prisma.schedule.findFirst({
-      where: {
-        date,
-      },
-    });
-  }
-
-  async findByType(type: "PLANO" | "PARTICULAR") {
-    return prisma.schedule.findMany({
-      where: {
-        type,
       },
     });
   }

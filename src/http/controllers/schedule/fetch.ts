@@ -3,25 +3,15 @@ import { z, ZodError } from "zod";
 import { PrismaSchedulesRepository } from "../../../repositories/prisma/schedule-prisma-repository";
 import { FetchScheduleUseCase } from "../../../use-case/fetch-schedule";
 
-const fetchScheduleBodySchema = z.object({
-  date: z.date().optional(),
-  type: z.enum(["PLANO", "PARTICULAR"]).optional(),
-});
-
 export async function fetch(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { date, type } = fetchScheduleBodySchema.parse(request.body);
-
     const schedulesRepository = new PrismaSchedulesRepository();
 
     const fetchScheduleUseCase = new FetchScheduleUseCase(schedulesRepository);
 
-    const schedules = await fetchScheduleUseCase.execute({
-      date,
-      type,
-    });
+    const schedules = await fetchScheduleUseCase.execute({});
 
-    return reply.status(200).send(schedules);
+    return reply.status(200).send(schedules.schedule);
   } catch (error: any) {
     if (error instanceof ZodError) {
       return reply.status(400).send({ validationError: error.errors });
