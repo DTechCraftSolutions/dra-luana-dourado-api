@@ -18,6 +18,13 @@ export class FetchScheduleByProfessionalUseCase {
     const schedules = await this.schedulesRepository.findByProfessionalId(
       professionalId
     );
+
+    if (professionalId === "all") {
+      const schedules = await this.schedulesRepository.findAll();
+      return {
+        schedules,
+      };
+    }
     if (!schedules) {
       throw new Error("Schedules not found");
     }
