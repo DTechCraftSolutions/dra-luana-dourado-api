@@ -5,16 +5,22 @@ import { UpdateScheduleUseCase } from "../../../use-case/update-schedule";
 
 const updateScheduleBodySchema = z.object({
   id: z.string(),
-  date: z.date().optional(),
-  status: z.enum(["CANCELADO", "ATENDIDO", "PENDENTE"]).optional(),
-  type: z.enum(["PLANO", "PARTICULAR"]).optional(),
+  date: z.string().optional(),
+  status: z
+    .enum([
+      "AGUARDANDO",
+      "EM_ATENDIMENTO",
+      "CANCELADO",
+      "FINALIZADO",
+      "REAGENDADO",
+      "PENDENTE",
+    ])
+    .optional(),
 });
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { id, date, status, type } = updateScheduleBodySchema.parse(
-      request.body
-    );
+    const { id, date, status } = updateScheduleBodySchema.parse(request.body);
 
     const scheduleRepository = new PrismaSchedulesRepository();
 
@@ -24,7 +30,6 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
       id,
       date,
       status,
-      type,
     });
 
     return reply.status(200).send();

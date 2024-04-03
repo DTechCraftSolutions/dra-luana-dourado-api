@@ -3,9 +3,14 @@ import { SchedulesRepository } from "../repositories/schedule-repository";
 
 interface UpdateScheduleRequest {
   id: string;
-  date?: Date;
-  status?: "CANCELADO" | "ATENDIDO" | "PENDENTE";
-  type?: "PLANO" | "PARTICULAR";
+  date?: string;
+  status?:
+    | "AGUARDANDO"
+    | "EM_ATENDIMENTO"
+    | "CANCELADO"
+    | "FINALIZADO"
+    | "REAGENDADO"
+    | "PENDENTE";
 }
 
 interface UpdateScheduleResponse {
@@ -19,7 +24,6 @@ export class UpdateScheduleUseCase {
     id,
     date,
     status,
-    type,
   }: UpdateScheduleRequest): Promise<UpdateScheduleResponse> {
     const schedule = await this.schedulesRepository.findById(id);
 
@@ -27,7 +31,6 @@ export class UpdateScheduleUseCase {
 
     if (date) schedule.date = date;
     if (status) schedule.status = status;
-    if (type) schedule.type = type;
 
     const updatedSchedule = await this.schedulesRepository.update(schedule);
 
