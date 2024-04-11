@@ -4,10 +4,15 @@ interface DeleteProfessionalsRequest {
   id: string;
 }
 
+interface DeleteProfessionalsResponse {}
+
 export class DeleteProfessionalsUseCase {
   constructor(private professionalsRepository: ProfessionalsRepository) {}
 
-  async execute({ id }: DeleteProfessionalsRequest): Promise<void> {
+  async execute({
+    id,
+  }: DeleteProfessionalsRequest): Promise<DeleteProfessionalsResponse> {
     await this.professionalsRepository.delete(id);
+    return {};
   }
 }

@@ -5,7 +5,7 @@ import { ProfessionalsRepository } from "../professionals-repository";
 
 export class PrismaProfessionalsRepository implements ProfessionalsRepository {
   async delete(id: string) {
-    prisma.professional.delete({
+    await prisma.professional.delete({
       where: {
         id,
       },
