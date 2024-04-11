@@ -6,4 +6,5 @@ export interface ProfessionalsRepository {
   findById(id: string): Promise<Professional | null>;
   findAll(): Promise<Professional[]>;
   create(data: Prisma.ProfessionalCreateInput): Promise<Professional>;
+  update(professional: Professional): Promise<Professional>;
 }

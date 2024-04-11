@@ -1,9 +1,17 @@
 import { prisma } from "../../lib/prisma";
-import { Prisma } from "@prisma/client";
+import { Prisma, Professional } from "@prisma/client";
 
 import { ProfessionalsRepository } from "../professionals-repository";
 
 export class PrismaProfessionalsRepository implements ProfessionalsRepository {
+  async update(professional: Professional) {
+    return prisma.professional.update({
+      where: {
+        id: professional.id,
+      },
+      data: professional,
+    });
+  }
   async findByName(name: string) {
     return prisma.professional.findFirstOrThrow({
       where: {
