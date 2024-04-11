@@ -4,6 +4,13 @@ import { Prisma, Professional } from "@prisma/client";
 import { ProfessionalsRepository } from "../professionals-repository";
 
 export class PrismaProfessionalsRepository implements ProfessionalsRepository {
+  async delete(id: string) {
+    prisma.professional.delete({
+      where: {
+        id,
+      },
+    });
+  }
   async update(professional: Professional) {
     return prisma.professional.update({
       where: {

@@ -7,11 +7,14 @@ import { profile } from "./profile";
 import { findAll } from "./findAll";
 import { findNameById } from "./findNameById";
 import { update } from "./update";
+import { deleteProfessionals } from "./delete";
 
 export async function professionalsRoutes(app: FastifyInstance) {
   app.post("/register-professionals", registerProfessionals);
 
   app.put("/update-professionals", update);
+
+  app.delete("/delete-professionals", deleteProfessionals);
 
   app.patch("/refresh-token-professionals", refresh);
 
