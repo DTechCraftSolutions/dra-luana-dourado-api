@@ -80,6 +80,7 @@ model Schedule {
   professionalId  String
   patientId       String
   availableTimeId String
+  procedurePlanId String?
 }
 
 model AvailableTime {
@@ -103,9 +104,12 @@ model Procedure {
   color          String
   price          Int
   description    String
+  active         String?
+  pricePlan      Int?
   Schedule       Schedule[]
   professionals  Professional @relation(fields: [professionalId], references: [id])
   professionalId String
+  Plan           Plan[]
 
   @@map("schedules")
 }
@@ -115,4 +119,12 @@ model Budget {
   price Int
 
   @@map("budgets")
+}
+
+model Plan {
+  id            String    @id @default(uuid())
+  name          String
+  duration      Int
+  ProcedurePlan Procedure @relation(fields: [procedureId], references: [id])
+  procedureId   String
 }

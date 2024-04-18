@@ -9,6 +9,8 @@ export interface UpdateProcedureRequest {
   color?: string;
   price?: number;
   description?: string;
+  active?: string;
+  pricePlan?: number;
 }
 
 export interface UpdateProcedureResponse {
@@ -25,6 +27,8 @@ export class UpdateProcedureUseCase {
     color,
     price,
     description,
+    active,
+    pricePlan,
   }: UpdateProcedureRequest): Promise<UpdateProcedureResponse> {
     const procedure = await this.proceduresRepository.findById(id);
 
@@ -38,6 +42,8 @@ export class UpdateProcedureUseCase {
     if (color) procedure.color = color;
     if (price) procedure.price = price;
     if (description) procedure.description = description;
+    if (active) procedure.active = active;
+    if (pricePlan) procedure.pricePlan = pricePlan;
 
     await this.proceduresRepository.update(procedure);
 
