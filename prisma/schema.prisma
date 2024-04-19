@@ -34,6 +34,7 @@ model Professional {
   Schedule      Schedule[]
   Procedure     Procedure[]
   AvailableTime AvailableTime[]
+  ProcedurePlan ProcedurePlan[]
 
   @@map("professionals")
 }
@@ -69,18 +70,19 @@ model Patient {
 }
 
 model Schedule {
-  id              String        @id @default(uuid())
+  id              String         @id @default(uuid())
   date            String
-  procedures      Procedure     @relation(fields: [procedureId], references: [id])
-  professionals   Professional  @relation(fields: [professionalId], references: [id])
-  patients        Patient       @relation(fields: [patientId], references: [id])
-  available_times AvailableTime @relation(fields: [availableTimeId], references: [id])
+  procedures      Procedure      @relation(fields: [procedureId], references: [id])
+  professionals   Professional   @relation(fields: [professionalId], references: [id])
+  patients        Patient        @relation(fields: [patientId], references: [id])
+  available_times AvailableTime  @relation(fields: [availableTimeId], references: [id])
   status          RoleStatus
   procedureId     String
   professionalId  String
   patientId       String
   availableTimeId String
   procedurePlanId String?
+  ProcedurePlan   ProcedurePlan? @relation(fields: [procedurePlanId], references: [id])
 }
 
 model AvailableTime {
@@ -104,12 +106,9 @@ model Procedure {
   color          String
   price          Int
   description    String
-  active         String?
-  pricePlan      Int?
   Schedule       Schedule[]
   professionals  Professional @relation(fields: [professionalId], references: [id])
   professionalId String
-  Plan           Plan[]
 
   @@map("schedules")
 }
@@ -121,10 +120,24 @@ model Budget {
   @@map("budgets")
 }
 
+model ProcedurePlan {
+  id             String       @id @default(uuid())
+  name           String
+  recurrence     String
+  duration       String
+  color          String
+  price          Int
+  description    String
+  Schedule       Schedule[]
+  professionals  Professional @relation(fields: [professionalId], references: [id])
+  professionalId String
+  Plan           Plan?        @relation(fields: [planId], references: [id])
+  planId         String?
+}
+
 model Plan {
-  id            String    @id @default(uuid())
+  id            String          @id @default(uuid())
   name          String
   duration      Int
-  ProcedurePlan Procedure @relation(fields: [procedureId], references: [id])
-  procedureId   String
+  ProcedurePlan ProcedurePlan[]
 }

@@ -13,23 +13,12 @@ const updateProcedureBodySchema = z.object({
   description: z.string().optional(),
   price: z.number().optional(),
   recurrence: z.string().optional(),
-  active: z.string().optional(),
-  pricePlan: z.number().optional(),
 });
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const {
-      id,
-      name,
-      duration,
-      color,
-      description,
-      price,
-      recurrence,
-      active,
-      pricePlan,
-    } = updateProcedureBodySchema.parse(request.body);
+    const { id, name, duration, color, description, price, recurrence } =
+      updateProcedureBodySchema.parse(request.body);
 
     const procedureRepository = new PrismaProceduresRepository();
 
@@ -45,8 +34,6 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
       description,
       price,
       recurrence,
-      active,
-      pricePlan,
     });
 
     return reply.status(200).send();
