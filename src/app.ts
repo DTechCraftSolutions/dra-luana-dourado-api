@@ -9,7 +9,8 @@ import { procedureRoutes } from "./http/controllers/procedure/routes";
 import { scheduleRoutes } from "./http/controllers/schedule/routes";
 import { availableTimesRoutes } from "./http/controllers/available-times/routes";
 import { budgetRoutes } from "./http/controllers/budget/routes";
-import { planRoutes } from "./http/controllers/paln/routes";
+import { planRoutes } from "./http/controllers/plan/routes";
+import { procedurePlanRoutes } from "./http/controllers/procedure-plan.ts/routes";
 
 export const app = fastify();
 
@@ -36,3 +37,4 @@ app.register(scheduleRoutes);
 app.register(availableTimesRoutes);
 app.register(budgetRoutes);
 app.register(planRoutes);
+app.register(procedurePlanRoutes);
