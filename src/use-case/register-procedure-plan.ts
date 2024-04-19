@@ -9,6 +9,7 @@ interface RegisterProcedurePlanRequest {
   price: number;
   description: string;
   professionalId: string;
+  active: string;
   planId?: string;
 }
 
@@ -26,6 +27,7 @@ export class RegisterProcedurePlanUseCase {
     description,
     professionalId,
     planId,
+    active,
   }: RegisterProcedurePlanRequest): Promise<void> {
     if (!planId) {
       throw new Error("Plan not found");
@@ -37,6 +39,7 @@ export class RegisterProcedurePlanUseCase {
       color,
       price,
       description,
+      active,
       professionals: { connect: { id: professionalId } },
       Plan: { connect: { id: planId } },
     });

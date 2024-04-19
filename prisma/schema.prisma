@@ -128,6 +128,7 @@ model ProcedurePlan {
   color          String
   price          Int
   description    String
+  active         String
   Schedule       Schedule[]
   professionals  Professional @relation(fields: [professionalId], references: [id])
   professionalId String

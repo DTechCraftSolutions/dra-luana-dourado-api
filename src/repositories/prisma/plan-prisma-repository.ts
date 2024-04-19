@@ -3,6 +3,9 @@ import { PlanRepository } from "../plan-repository";
 import { prisma } from "../../lib/prisma";
 
 export class PrismaPlansRepository implements PlanRepository {
+  async findAll(): Promise<Plan[]> {
+    return await prisma.plan.findMany();
+  }
   async findById(id: string): Promise<Plan | null> {
     return await prisma.plan.findUnique({
       where: {

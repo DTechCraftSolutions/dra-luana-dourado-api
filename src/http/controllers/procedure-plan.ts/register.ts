@@ -14,6 +14,7 @@ const registerProcedurePlanBodySchema = z.object({
   description: z.string(),
   price: z.number(),
   planId: z.string(),
+  active: z.string(),
 });
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
@@ -26,6 +27,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       recurrence,
       description,
       price,
+      active,
       planId,
     } = registerProcedurePlanBodySchema.parse(request.body);
 
@@ -36,6 +38,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
     await registerProcedurePlanUseCase.execute({
       duration,
+      active,
       name,
       professionalId,
       recurrence,
