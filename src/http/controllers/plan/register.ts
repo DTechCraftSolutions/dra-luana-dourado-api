@@ -15,12 +15,12 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     const planRepository = new PrismaPlansRepository();
     const registerPlanUseCase = new RegisterPlanUseCase(planRepository);
 
-    await registerPlanUseCase.execute({
+    const { plan } = await registerPlanUseCase.execute({
       duration,
       name,
     });
 
-    return reply.status(201).send();
+    return reply.status(201).send(plan);
   } catch (error: any) {
     if (error instanceof ZodError) {
       return reply.status(400).send({ validationError: error.errors });
